@@ -20,7 +20,7 @@
             $acc+=$val;
             $data = $recensione->getElementsByTagName('Data')->item(0)->nodeValue;
 
-            if($data == date('y/m/d')){
+            if($data == date('Y-m-d')){
                 $today++;
             }
             

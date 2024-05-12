@@ -72,7 +72,7 @@ $recensione = $doc->createElement('Recensione');
 
 //inserisco una recensione falsa
 $ele1 = $doc->createElement('Utente');
-$ele1->nodeValue='falsa1';
+$ele1->nodeValue='Usernamefalsa1';
 $recensione->appendChild($ele1);
 
 $ele2 = $doc->createElement('Valutazione');
@@ -84,7 +84,7 @@ $ele3->nodeValue='falsa1';
 $recensione->appendChild($ele3);
 
 $ele3 = $doc->createElement('Data');
-$ele3->nodeValue=date('y/m/d');
+$ele3->nodeValue=date('Y-m-d');
 $recensione->appendChild($ele3);
 
 $ele4 = $doc->createElement('Id');

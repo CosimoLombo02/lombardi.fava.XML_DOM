@@ -64,7 +64,7 @@ if(!isset($_SESSION['username'])){
                        $r->appendChild($ele3);
 
                        $ele3 = $doc->createElement('Data');
-                       $ele3->nodeValue=date('y/m/d');
+                       $ele3->nodeValue=date('Y-m-d');
                        $r->appendChild($ele3);
 
                        $ele4 = $doc->createElement('Id');

@@ -30,7 +30,7 @@
 
 <xsd:element name="Contenuto" type="xsd:string"/>
 
-<xsd:element name="Data" type="xsd:string"/>
+<xsd:element name="Data" type="xsd:date"/>
 
 <xsd:element name="Id" type="xsd:integer"/>
 
