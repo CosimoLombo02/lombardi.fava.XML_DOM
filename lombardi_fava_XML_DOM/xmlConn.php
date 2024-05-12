@@ -7,3 +7,7 @@ $doc = new DOMDocument();
 $doc->loadXML($xmlString);
 $root = $doc->documentElement;
 $elementi = $root->childNodes;
+
+if(!$doc->schemaValidate("schema.xsd") || !$doc->validate()){
+   die("Errore di validazione");
+}

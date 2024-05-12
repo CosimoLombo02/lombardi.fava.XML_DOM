@@ -1,0 +1,10 @@
+
+
+<!ELEMENT Recensioni (Recensione*)>
+<!ELEMENT Recensione (Utente+, Valutazione+, Contenuto+, Data+, Id+)>
+<!ELEMENT Utente (#PCDATA)>
+<!ELEMENT Valutazione (#PCDATA)>
+<!ELEMENT Contenuto (#PCDATA)>
+<!ELEMENT Data (#PCDATA)>
+<!ELEMENT Id (#PCDATA)>
+

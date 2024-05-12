@@ -84,7 +84,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
       }//end for
 
-           if($doc->schemaValidate("schema.xsd")) {
+           if($doc->schemaValidate("schema.xsd") && $doc->validate()) {
            $doc->save("recensioni.xml");
            
          header("Refresh:0");

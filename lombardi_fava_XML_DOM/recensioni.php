@@ -37,13 +37,56 @@ if(!isset($_SESSION['username'])){
                         $recensione = $_POST['contenuto'];
                         $user = $_SESSION['username'];
 
-                        require_once "connection.php";
-                        $sql = "insert into recensioni(valutazione,contenuto,nomeUtenteAssociato,data) values($val,'$recensione','$user',now())";
-                        $result=mysqli_query($conn, $sql);
-                        if($result)
+                        require_once "xmlConn.php";
+                        
+                        //se il file recensioni.xml è vuoto, questa recensione avrà id = 0 + 1
+                        if($root->childNodes->count()==0){
+                            $idU=1;
+                        }else{
+                         // altrimenti prendo l'id dell'ultimo nodo e la recensione inserita avrà id pari a idU+1
+                        $idU = ($elementi->item($elementi->length-1)->lastChild->nodeValue)+1;   
+                          
+                        }
+                        $r = $doc->createElement('Recensione');
+                  
+
+                       
+                       $ele1 = $doc->createElement('Utente');
+                       $ele1->nodeValue=$user;
+                       $r->appendChild($ele1);
+
+                       $ele2 = $doc->createElement('Valutazione');
+                       $ele2->nodeValue=$val;
+                       $r->appendChild($ele2);
+
+                       $ele3 = $doc->createElement('Contenuto');
+                       $ele3->nodeValue=$recensione;
+                       $r->appendChild($ele3);
+
+                       $ele3 = $doc->createElement('Data');
+                       $ele3->nodeValue=date('y/m/d');
+                       $r->appendChild($ele3);
+
+                       $ele4 = $doc->createElement('Id');
+                       $ele4->nodeValue=$idU; //questa sarà la recensione con id pari ad 1
+                       $r->appendChild($ele4);
+
+
+                       $root->appendChild($r); //le recensioni vengono inserite dopo l'ultimo elemento, cosi da simulare un ordinamento
+                                                       //per id in ordine crescente
+
+                       if($doc->schemaValidate("schema.xsd") && $doc->validate()) {
+                        $doc->save("recensioni.xml");
                         echo "<div class='center'><p class='para'>Inserimento riuscito!</p></div>";
-                        else
-                        echo "<div class='center'><p class='para'>Inserimento non riuscito!</p></div>";
+                        
+                      
+                    }  else{
+                    echo "<div class='center'><p class='para'>Inserimento non riuscito!</p></div>";
+                   }  
+
+
+
+                       
                     }
                 }
                 ?>

@@ -55,9 +55,13 @@ if($connessione->query($sql)===true){
 //al posto di creare la tabella recensioni, creo un file xml per le recensioni
 
 
-$doc = new DOMDocument();
+$imp = new DOMImplementation;
+$dtd = $imp->createDocumentType('Recensioni', '', 'reviewsDTD.dtd');
+$doc = $imp->createDocument("", "", $dtd);
+//$doc = new DOMDocument();
 $doc->formatOutput = true;
 $doc->encoding="UTF-8";
+
 
 /*radice*/
 $root = $doc->createElement('Recensioni'); 
@@ -66,9 +70,9 @@ $root = $doc->appendChild($root);
 $recensione = $doc->createElement('Recensione');
 
 
-//provo ora ad aggiungere la recensione falsa
+//inserisco una recensione falsa
 $ele1 = $doc->createElement('Utente');
-$ele1->nodeValue='falsa';
+$ele1->nodeValue='falsa1';
 $recensione->appendChild($ele1);
 
 $ele2 = $doc->createElement('Valutazione');
@@ -76,7 +80,7 @@ $ele2->nodeValue=5;
 $recensione->appendChild($ele2);
 
 $ele3 = $doc->createElement('Contenuto');
-$ele3->nodeValue='falsa';
+$ele3->nodeValue='falsa1';
 $recensione->appendChild($ele3);
 
 $ele3 = $doc->createElement('Data');
@@ -87,22 +91,30 @@ $ele4 = $doc->createElement('Id');
 $ele4->nodeValue=1; //questa sarà la recensione con id pari ad 1
 $recensione->appendChild($ele4);
 
-//$recensione = $doc->appendChild($recensione);
 $root->appendChild($recensione);
 
 
-//se il documento viene validato con lo schema allora verrà creato il tutto
-if($doc->schemaValidate("schema.xsd")){
-  $doc->save('recensioni.xml');
-  echo "Creazione del file xml avvenuta con successo!";
+
+
+
+
+
+
+$doc->save('recensioni.xml');
+$doc->load('recensioni.xml');
+
+//Se la validazione va a buon fine allora posso proseguire
+if($doc->validate() && $doc->schemaValidate("schema.xsd")){
+  echo "file creato e validato!";
 }else{
-  die("Errore nella validazione del file xml!");
+  echo "Errore!";
+  unlink("recensioni.xml"); //elimina il file creato in caso di errori
 }
 
 
 /*se il documento non verrà validato allora chiudo lo script*/
 
-echo "File xml creato correttamente!";
+
 
 
 ?>

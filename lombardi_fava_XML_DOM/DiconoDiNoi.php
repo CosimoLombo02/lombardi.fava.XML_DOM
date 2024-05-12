@@ -54,6 +54,9 @@ echo "<div class='center'><a href='homepage.php'><img class='logo' src='europark
             $val = $recensione->getElementsByTagName('Valutazione')->item(0)->nodeValue;
             $cont = $recensione->getElementsByTagName('Contenuto')->item(0)->nodeValue;
             $data = $recensione->getElementsByTagName('Data')->item(0)->nodeValue;
+
+            //stampiamo solo le recensioni con valutazione >= 3
+            if($val >= 3){
             
             
                             //id code qui non viene stampato, solo l'admin lo vede
@@ -68,7 +71,7 @@ echo "<div class='center'><a href='homepage.php'><img class='logo' src='europark
                             echo "<p class='testoSemplice'><strong>Data:</strong> ".$data."</p>";
                             echo "<hr />";
 
-                        
+            } //end if  
                     
                     }//end for
                     
