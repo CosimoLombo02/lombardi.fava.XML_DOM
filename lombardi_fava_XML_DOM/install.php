@@ -17,7 +17,7 @@ if($connessione === false){
 
 
 
-$sql = "create database rimessaggio1";
+$sql = "create database rimessaggio";
 
 if($connessione->query($sql)===true){
       echo "Creazione db avvenuta con successo!\n";
@@ -26,7 +26,7 @@ if($connessione->query($sql)===true){
 }
 
 
-$sql = "use rimessaggio1";
+$sql = "use rimessaggio";
 if($connessione->query($sql)===true){
     echo "Database selezionato correttamente\n";
 }else{
