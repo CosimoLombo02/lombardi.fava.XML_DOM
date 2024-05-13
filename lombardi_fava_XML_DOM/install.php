@@ -1,10 +1,14 @@
 <?php
 
-/*$host ="localhost";
-$user = "root";
-$password = "admin";*/
+/*Prima di far partire questo script ricordarsi di cambiare username e password
+nel file AccountSettings.php*/
 
 require_once "AccountSettings.php";
+
+/*nel caso il db fosse già presente nel server le seguenti query falliscono ma 
+non è un problema, il db viene utilizzato solo per il login, il file xml viene creato
+indipendentemente la buona riuscita delle seguenti query*/
+
 
 $password = $pass;
 
