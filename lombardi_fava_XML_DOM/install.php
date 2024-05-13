@@ -1,13 +1,10 @@
 <?php
 
+
 /*Prima di far partire questo script ricordarsi di cambiare username e password
 nel file AccountSettings.php*/
 
-require_once "AccountSettings.php";
-
-/*nel caso il db fosse già presente nel server le seguenti query falliscono ma 
-non è un problema, il db viene utilizzato solo per il login, il file xml viene creato
-indipendentemente la buona riuscita delle seguenti query*/
+require_once "AccountSettings.php"; 
 
 
 $password = $pass;
@@ -19,6 +16,13 @@ if($connessione === false){
 
 }
 
+/*Se già presente nel server il db rimessaggio viene eliminato e 
+poi successivamente viene ricreato */
+
+$sql = "drop database rimessaggio";
+if($connessione->query($sql)===true){
+  echo "Database preesistente eliminato!\n";
+}
 
 
 $sql = "create database rimessaggio";
@@ -99,11 +103,6 @@ $root->appendChild($recensione);
 
 
 
-
-
-
-
-
 $doc->save('recensioni.xml');
 $doc->load('recensioni.xml');
 
@@ -136,6 +135,21 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    
     
 </body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
