@@ -68,7 +68,7 @@ if(!isset($_SESSION['username'])){
                        $r->appendChild($ele3);
 
                        $ele4 = $doc->createElement('Id');
-                       $ele4->nodeValue=$idU; //questa sarà la recensione con id pari ad 1
+                       $ele4->nodeValue=$idU; 
                        $r->appendChild($ele4);
 
 
