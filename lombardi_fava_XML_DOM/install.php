@@ -116,7 +116,7 @@ if($doc->validate() && $doc->schemaValidate("schema.xsd")){
 }
 
 
-/*se il documento non verrà validato allora chiudo lo script*/
+
 
 
 
