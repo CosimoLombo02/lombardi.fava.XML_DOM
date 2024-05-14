@@ -79,6 +79,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
                if($id == $target[0]) {
                 $root->removeChild($recensione);
+                break; //esco dal ciclo 
                
            }
 

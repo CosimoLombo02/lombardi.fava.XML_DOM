@@ -1,13 +1,10 @@
 <?php
 
+
 /*Prima di far partire questo script ricordarsi di cambiare username e password
 nel file AccountSettings.php*/
 
-require_once "AccountSettings.php";
-
-/*nel caso il db fosse già presente nel server le seguenti query falliscono ma 
-non è un problema, il db viene utilizzato solo per il login, il file xml viene creato
-indipendentemente la buona riuscita delle seguenti query*/
+require_once "AccountSettings.php"; 
 
 
 $password = $pass;
@@ -19,6 +16,13 @@ if($connessione === false){
 
 }
 
+/*Se già presente nel server il db rimessaggio viene eliminato e 
+poi successivamente viene ricreato */
+
+$sql = "drop database rimessaggio";
+if($connessione->query($sql)===true){
+  echo "Database preesistente eliminato!\n";
+}
 
 
 $sql = "create database rimessaggio";
@@ -54,6 +58,16 @@ if($connessione->query($sql)===true){
     echo "Admin inserito correttamente!\n";
 }else{
   echo "Errore nell'inserimento dell'admin!\n";
+}
+
+//utente recensore(ovviamente è possibile crearne altri registrandosi al sito)
+$u = "username1" ;
+$p = md5("Ciao123!"); 
+$sql = "insert into utenti(username,password,ruolo) values('$u','$p',2)";
+if($connessione->query($sql)===true){
+    echo "Utente inserito correttamente!\n";
+}else{
+  echo "Errore nell'inserimento dell'utente!\n";
 }
 
 //al posto di creare la tabella recensioni, creo un file xml per le recensioni
@@ -99,11 +113,6 @@ $root->appendChild($recensione);
 
 
 
-
-
-
-
-
 $doc->save('recensioni.xml');
 $doc->load('recensioni.xml');
 
@@ -116,7 +125,7 @@ if($doc->validate() && $doc->schemaValidate("schema.xsd")){
 }
 
 
-/*se il documento non verrà validato allora chiudo lo script*/
+
 
 
 
